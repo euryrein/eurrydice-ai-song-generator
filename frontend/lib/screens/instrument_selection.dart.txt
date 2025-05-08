@@ -1,0 +1,43 @@
+import 'package:flutter/material.dart';
+
+class InstrumentSelection extends StatefulWidget {
+  @override
+  _InstrumentSelectionState createState() => _InstrumentSelectionState();
+}
+
+class _InstrumentSelectionState extends State<InstrumentSelection> {
+  final Map<String, bool> instruments = {
+    'Piano': false,
+    'Violon': false,
+    'Guitare': false,
+    'Tambour': false,
+    'Cymbales': false,
+    'Gong': false,
+    'Balafon': false,
+    'Batterie': false,
+  };
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Choix des instruments'),
+        centerTitle: true,
+      ),
+      body: ListView(
+        padding: EdgeInsets.all(16),
+        children: instruments.keys.map((instrument) {
+          return CheckboxListTile(
+            title: Text(instrument),
+            value: instruments[instrument],
+            onChanged: (value) {
+              setState(() {
+                instruments[instrument] = value ?? false;
+              });
+            },
+          );
+        }).toList(),
+      ),
+    );
+  }
+}
