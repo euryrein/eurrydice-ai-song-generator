@@ -1,0 +1,47 @@
+import 'package:flutter/material.dart';
+
+class AmbianceSelection extends StatefulWidget {
+  @override
+  _AmbianceSelectionState createState() => _AmbianceSelectionState();
+}
+
+class _AmbianceSelectionState extends State<AmbianceSelection> {
+  String selectedAmbiance = 'Lyrical';
+
+  final List<String> ambiances = [
+    'Lyrical',
+    'Dramatic',
+    'Ancient',
+    'Spiritual',
+    'Techno',
+    'Dance',
+    'Techno-Spiritual',
+    'Dance-Spiritual',
+    'Tragic',
+    'Fairytale',
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Choix de l\'ambiance'),
+      ),
+      body: ListView(
+        padding: EdgeInsets.all(20),
+        children: ambiances.map((ambiance) {
+          return RadioListTile(
+            title: Text(ambiance),
+            value: ambiance,
+            groupValue: selectedAmbiance,
+            onChanged: (value) {
+              setState(() {
+                selectedAmbiance = value.toString();
+              });
+            },
+          );
+        }).toList(),
+      ),
+    );
+  }
+}

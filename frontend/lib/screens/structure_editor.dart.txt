@@ -1,0 +1,61 @@
+import 'package:flutter/material.dart';
+
+class StructureEditor extends StatefulWidget {
+  @override
+  _StructureEditorState createState() => _StructureEditorState();
+}
+
+class _StructureEditorState extends State<StructureEditor> {
+  int numberOfMovements = 3;
+  bool includeChorus = true;
+  bool dramaticEnding = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Structure de la chanson'),
+        centerTitle: true,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            Text("Nombre de mouvements : $numberOfMovements",
+                style: TextStyle(fontSize: 18)),
+            Slider(
+              value: numberOfMovements.toDouble(),
+              min: 1,
+              max: 5,
+              divisions: 4,
+              label: numberOfMovements.toString(),
+              onChanged: (value) {
+                setState(() {
+                  numberOfMovements = value.toInt();
+                });
+              },
+            ),
+            CheckboxListTile(
+              title: Text("Inclure un refrain"),
+              value: includeChorus,
+              onChanged: (value) {
+                setState(() {
+                  includeChorus = value ?? false;
+                });
+              },
+            ),
+            CheckboxListTile(
+              title: Text("Fin dramatique"),
+              value: dramaticEnding,
+              onChanged: (value) {
+                setState(() {
+                  dramaticEnding = value ?? false;
+                });
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

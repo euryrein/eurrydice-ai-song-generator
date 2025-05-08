@@ -1,0 +1,45 @@
+import 'package:flutter/material.dart';
+
+class VoiceSelection extends StatefulWidget {
+  @override
+  _VoiceSelectionState createState() => _VoiceSelectionState();
+}
+
+class _VoiceSelectionState extends State<VoiceSelection> {
+  String selectedVoice = 'Soprano';
+
+  final List<String> voices = [
+    'Soprano',
+    'Mezzo',
+    'Alto',
+    'Ténor',
+    'Baryton',
+    'Basse',
+    'Voix féminine IA 1',
+    'Voix masculine IA 2',
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Choix de la voix'),
+      ),
+      body: ListView(
+        padding: EdgeInsets.all(20),
+        children: voices.map((voice) {
+          return RadioListTile(
+            title: Text(voice),
+            value: voice,
+            groupValue: selectedVoice,
+            onChanged: (value) {
+              setState(() {
+                selectedVoice = value.toString();
+              });
+            },
+          );
+        }).toList(),
+      ),
+    );
+  }
+}

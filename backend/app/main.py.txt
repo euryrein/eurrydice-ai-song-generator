@@ -1,0 +1,31 @@
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+app = FastAPI()
+
+# Autoriser le frontend Flutter
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+@app.get("/")
+def read_root():
+    return {"message": "Bienvenue sur le backend d’Eurydice"}
+
+@app.post("/generate-voice")
+def generate_voice(data: dict):
+    # Logique de génération vocale simulée (à remplacer par IA)
+    return {"status": "success", "voice": data.get("voice", "inconnue")}
+
+@app.post("/generate-music")
+def generate_music(data: dict):
+    # Logique de génération musicale simulée
+    return {"status": "success", "ambiance": data.get("ambiance", "lyrical")}
+
+@app.post("/mix-and-export")
+def mix_and_export(data: dict):
+    # Logique de mixage simulée
+    return {"status": "success", "filename": "eurydice_mix.wav"}
